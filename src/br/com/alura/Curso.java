@@ -50,4 +50,22 @@ public class Curso {
 	public void adiciona(Aula aula) {
 		this.aulas.add(aula);
 	}
+	
+	// Surgiu a necessidade de criarmos a soma do tempo aqui dentro mesmo
+	public int getTempoTotal() {
+		
+		// forma feia: abaixo
+//		int tempoTotal = 0;
+//		for (Aula aula : aulas) {
+//			tempoTotal += aula.getTempo();
+//		}
+		
+		// forma bonitinha - pego os valores que estão no getTempo e somo os valores com sum()
+		return this.aulas.stream().mapToInt(Aula::getTempo).sum();
+	}
+	
+	@Override
+	public String toString() {
+		return "[Curso: " + nome + ", tempo total: " + this.getTempoTotal() + "," + " aulas: " + this.aulas + "]";
+	}
 }

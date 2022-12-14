@@ -24,6 +24,7 @@ public class TestaCurso {
 		javaColecoes.adiciona(new Aula("Modelando com coleções", 22));
 		
 		List<Aula> aulas = javaColecoes.getAulas();
+		System.out.println(aulas);
 		
 		/*
 		 * Diferença entre ArrayList e LinkedList = performance
