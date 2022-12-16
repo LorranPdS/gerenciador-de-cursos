@@ -2,7 +2,9 @@ package br.com.alura;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Curso {
 
@@ -21,6 +23,12 @@ public class Curso {
 	 * usar interfaces do que classes porque ela ficou menos acoplada
 	 */
 	private List<Aula> aulas = new ArrayList<>();
+	
+	/*
+	 * Como não faz sentido para mim importância alguma na ordem em que os alunos são 
+	 * adicionados, então em vez de criar uma List, vou criar um Set de alunos
+	 */
+	private Set<Aluno> alunos = new HashSet<>();
 	
 	public Curso(String nome, String instrutor) {
 		this.nome = nome;
@@ -67,5 +75,13 @@ public class Curso {
 	@Override
 	public String toString() {
 		return "[Curso: " + nome + ", tempo total: " + this.getTempoTotal() + "," + " aulas: " + this.aulas + "]";
+	}
+
+	public void matricula(Aluno aluno) {
+		this.alunos.add(aluno);
+	}
+	
+	public Set<Aluno> getAlunos() {
+		return Collections.unmodifiableSet(alunos);
 	}
 }
