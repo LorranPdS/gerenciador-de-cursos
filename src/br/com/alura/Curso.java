@@ -30,6 +30,23 @@ public class Curso {
 	 */
 	private Set<Aluno> alunos = new HashSet<>();
 	
+	/*
+	 * Já o LinkedHashSet vai imprimir na ordem em que os objetos foram adicionados ao fazer 
+	 * um foreach. Da mesma maneira que o HashSet, você não consegue pegar um elemento específico
+	 * usando algum get
+	 */
+//	private Set<Aluno> alunos = new LinkedHashSet<>();
+
+	/*
+	 * Temos também o TreeSet só funciona para classes que são "Comparable". Ela também fará uma busca
+	 * mais rápida que em List, mas também não tão rápida quanto o HashSet. Ele guardará na ordem
+	 * natural dos objetos, e ele faria isso através dos "Comparable", e como vemos, a classe "Aluno" 
+	 * em que estamos criando o TreeSet abaixo não implements um Comparable.
+	 * 
+	 * Ele também aceita um Comparator como argumento
+	 */
+//	private Set<Aluno> alunos = new TreeSet<>();
+	
 	public Curso(String nome, String instrutor) {
 		this.nome = nome;
 		this.instrutor = instrutor;
