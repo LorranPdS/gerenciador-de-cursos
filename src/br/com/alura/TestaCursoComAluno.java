@@ -2,7 +2,6 @@ package br.com.alura;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.Vector;
 
 public class TestaCursoComAluno {
 
@@ -112,7 +111,7 @@ public class TestaCursoComAluno {
 		 * não havia collections, mas havia uma classe muito velha chamada Vector, veja:
 		 */
 		
-		Vector<Aluno> vetor = new Vector<>();
+//		Vector<Aluno> vetor = new Vector<>();
 		/*
 		 * O Vector é uma classe muito velha, ninguém mais usa e muito parecida com ArrayList
 		 */
