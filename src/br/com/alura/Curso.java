@@ -2,8 +2,11 @@ package br.com.alura;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class Curso {
@@ -46,6 +49,8 @@ public class Curso {
 	 * Ele também aceita um Comparator como argumento
 	 */
 //	private Set<Aluno> alunos = new TreeSet<>();
+	
+	private Map<Integer, Aluno> matriculaParaAluno = new HashMap<>();
 	
 	public Curso(String nome, String instrutor) {
 		this.nome = nome;
@@ -96,6 +101,8 @@ public class Curso {
 
 	public void matricula(Aluno aluno) {
 		this.alunos.add(aluno);
+		// criei isso aqui ao montar o map
+		this.matriculaParaAluno.put(aluno.getNumeroMatricula(), aluno);
 	}
 	
 	public Set<Aluno> getAlunos() {
@@ -105,6 +112,29 @@ public class Curso {
 	public boolean estaMatriculado(Aluno aluno) {
 		return this.alunos.contains(aluno);
 	}
+
+	public Aluno buscaMatriculado(int numero) {
+		// Agora eu vou pegar o que está dentro do método "matricula(numero)" em vez de fazer o foreach
+//		for (Aluno aluno : alunos) {
+//			if(aluno.getNumeroMatricula()== numero) {
+//				return aluno;
+//			}
+//		}
+//		throw new NoSuchElementException("Matrícula não encontrada: " + numero);
+		
+		// em vez de fazer aquele foreach, agora o Map se encarregará de fazer de forma bem rápida usando tabela de espalhamento (hash)
+		if(!matriculaParaAluno.containsKey(numero)) {
+			throw new NoSuchElementException("Aluno não encontrado: " + numero);
+		}
+		return matriculaParaAluno.get(numero);
+		// lembrando que a chave precisa ser única senão ele será sobrescrito
+	}
 	
+	/* IMPORTANTE SABER (mas evite usar)
+	 * Uma coisa interessante que se encontra de vez em quando é isso aqui:
+	 * Um "Mapa" que mapeia uma "Chave de Matrícula" (integer é uma key) para "Vários alunos" (para um Set de alunos), ou seja,
+	 * um Mapa que tem como valor (value) um conjunto de matrícula para alunos. Veja abaixo:
+	 */
+	Map<Integer, Set<Aluno>> matriculaParaAlunos; // Dessa forma, um conjunto é identificado por um número inteiro (como os lotes dos títulos do projeto Fluxo de Caixa)
 	
 }
